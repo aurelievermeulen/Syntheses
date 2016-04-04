@@ -22,7 +22,7 @@ Considérons l'entrée suivante
 \begin{equation}
 x(n) = z^n,\quad z=e^{j\omega_0}\qquad\Rightarrow\qquad x(n) = e^{j\omega_0n}
 \end{equation}
-où $-\infty<n<\infty$. Le signal de sortie est donnée en effectuant la convolution
+où $-\infty<n<\infty$. Le signal de sortie est donné en effectuant la convolution
 \begin{equation}
 \begin{array}{ll}
 y(n) &= \sum_{k=-\infty}^\infty h(k)x(n-k) = \sum_{k=-\infty}^\infty h(k)z^{n-k} = z^n 
@@ -33,8 +33,8 @@ y(n) &= \sum_{k=-\infty}^\infty h(k)x(n-k) = \sum_{k=-\infty}^\infty h(k)z^{n-k}
 En effet, la dernière somme peut être vue comme une constante complexe (dépendant de $z$ 
 et du SLP). Cette sortie  n'est que la fonction d'entrée multipliée par quelque chose : 
 $z^n,z\in\mathbb{C}$ est une \textit{fonction propre} de tout SLP discret.\\
-Si par hasard le signal d'entrée peut se mettre tous la forme d'une somme d'exponentielle 
-complexe (fonction propre) multipliée par un scalaire
+Si par hasard le signal d'entrée peut se mettre sous la forme d'une somme d'exponentielles 
+complexes (fonction propre) multipliée par un scalaire
 \begin{equation}
 x(n) = \sum_p a_pz_p^n
 \end{equation}
@@ -108,9 +108,9 @@ Il faut pour cela calculer
 \end{equation}
 La dernière somme peut être écrite
 \begin{equation}
-S = \sum_{n=0}^{N-1}x(n) e^{-j(k-m)\frac{2\pi}{N}n}  = \sum_{n=0}^{N-1} \alpha^n
+S = \sum_{n=0}^{N-1} e^{j(k-m)\frac{2\pi}{N}n}  = \sum_{n=0}^{N-1} \alpha^n
 \end{equation}
-où $\displaystyle \alpha = e^{-j(k-m)\frac{2\pi}{N}}$. Il s'agit de la série géométrique
+où $\displaystyle \alpha = e^{j(k-m)\frac{2\pi}{N}n}$. Il s'agit de la série géométrique
 \begin{equation}
 S = \left\{\begin{array}{ll}
 N & \text{ si } \alpha = 1\quad \text{c-à-d si } k-m=0,\pm N,\pm 2N,\dots\\
@@ -177,7 +177,7 @@ ici de sorte que la sortie sera donnée par
 \begin{equation}
 y(n) = \frac{1}{N}\sum_{k=0}^{N-1} X(k)H\left(e^{j\frac{2\pi}{N}k}\right)
 e^{j\frac{2\pi}{N}kn}\qquad \text{ où }\quad H\left(e^{j\frac{2\pi}{N}k}\right) = 
-\sum_{k=-\infty}^\infty h(n)e^{-j\frac{2\pi}{N}kn}
+\sum_{n=-\infty}^\infty h(n)e^{-j\frac{2\pi}{N}kn}
 \end{equation}
 Il s'agit d'une convolution où $x$ est remplacé par sa série de Fourier.
 	
@@ -200,7 +200,7 @@ Dès lors, pour un signal d'entrée réel du type $x(n) = A\cos(\omega_0n+\varph
 sortie vaut (superposition)
 \begin{equation}
 y(n) = A \left|H\left(e^{j\omega_0 }\right)\right|\cos\left(\omega_0n+\varphi+\text{arg} 
-H\left(e^{j\omega n}\right)\right)
+H\left(e^{j\omega_0}\right)\right)
 \end{equation}
 On peut considérer $H\left(e^{j\omega}\right)$ comme le développement de la fonction 
 périodique $H$ en série de Fourier (où $\omega$ est continu). Dès lors, on peut exprimer 
@@ -228,7 +228,7 @@ est nécessairement périodique).\\
 La \textit{transformée de Fourier (et inverse) d'un signal apériodique} est définie par
 \begin{equation}
 X(e^{j\omega}) = \sum_{n=-\infty}^\infty x(n)e^{-j\omega n},\qquad\qquad x(n) = \dfrac{1}{2\pi}
-\int_{-\pi}^\pi H(e^{j\omega}) e^{j\omega n}\ d\omega
+\int_{-\pi}^\pi X(e^{j\omega}) e^{j\omega n}\ d\omega
 \end{equation}
 La limitation sur $(-\pi,\pi)$ permet de considérer toutes les exponentielles complexes 
 distinctes, évitant ainsi les répétitions. \\
@@ -263,7 +263,7 @@ Notons que toute fonction de carré sommable est forcément absolument sommable.
 		\sum_{n=-\infty}^\infty |x(n)|^2 = \dfrac{1}{2\pi}\int_{-\pi}^\pi \left|X(e^{j\omega})\right|^2\ 
 		d\omega
 		\end{equation}
-		Ceci montre que les énergie dans le domaine temporel correspondent aux énergie dans le 
+		Ceci montre que les énergies dans le domaine temporel correspondent aux énergies dans le 
 		domaine fréquentiel. 
 		
 		\subsubsection{Convolution}
@@ -300,7 +300,7 @@ Construisons un signal périodique $x(n)$ de période $N$
 \begin{equation}
 x(n) = \sum_{r=-\infty}^{\infty} x_1(n+rN)
 \end{equation}
-Il existe d'autres façon de construire un tel signal. Calculons les coefficients $X_d(k)$ de la 
+Il existe d'autres façons de construire un tel signal. Calculons les coefficients $X_d(k)$ de la 
 série (car périodique) de Fourier (discrète) de $x(n)$ (en substituant l'expression de $x(n)$) :
 \begin{equation}
 \begin{array}{ll}
@@ -313,7 +313,7 @@ En décomposant l'expression ci-dessous, on retrouve l'exponentielle de départ 
 nombre fixe de fois $2\pi$ ($e^{jx}$ est périodique, de période $2\pi : e^{j2\pi}=1$, cela ne 
 change donc rien) :
 \begin{equation}
-X_d(k) = \sum_{k=-\infty}^\infty x_1(m)e^{-j\frac{2\pi}{N}mk} = X_1(e^{j\frac{2\pi}{N}k})
+X_d(k) = \sum_{m=-\infty}^\infty x_1(m)e^{-j\frac{2\pi}{N}mk} = X_1(e^{j\frac{2\pi}{N}k})
 \end{equation}
 On passe ainsi en revue toutes les valeurs de $x_1(n)$ avec une exponentielle complexe associée : 
 ces coefficients sont les échantillons de $X_1(e^{j\omega})$ prélevés à intervalle $2\pi/N$. Le 
@@ -349,13 +349,13 @@ Calculons donc ses coefficients
 \begin{array}{ll}
 c_n &= \DS \dfrac{1}{T}\int_{t_0}^{t_0+T} \Delta_T(t)e^{-i2\pi nt/T}\ dt\qquad (-\infty < t_0<+\infty)\\
 &= \DS \dfrac{1}{T}\int_{-T/2}^{T/2} \Delta_T(t)e^{-i2\pi nt/T}\ dt \\
-&= \DS \dfrac{1}{T}\int_{t_0}^{t_0+T} \delta(t) e^{-i2\pi nt/T}\ dt \\
-&= \DS \dfrac{1}{T} e^{-i2\pi n0/T}\ dt\\
+&= \DS \dfrac{1}{T}\int_{-T/2}^{T/2} \delta(t) e^{-i2\pi nt/T}\ dt \\
+&= \DS \dfrac{1}{T} e^{-i2\pi n0/T}\\
 &= \DS \dfrac{1}{T}
 \end{array}
 \end{equation}
 En effet, une période correspond à l'intervalle $[-T/2,T/2]$. Sur cette intervalle on retrouve une 
-seule impulsion (en zéro), les autre sont en dehors d'où le $\delta(t)$. On a donc
+seule impulsion (en zéro), les autres sont en dehors d'où le $\delta(t)$. On a donc
 \begin{equation}
 \Delta_T(t) = \dfrac{1}{T}\sum_{n=-\infty}^\infty e^{i2\pi nt/T}
 \end{equation}
@@ -365,11 +365,11 @@ En effectuant le changement de variable $t\rightarrow\omega$ et $T\rightarrow 2\
 \right)
 \end{equation}
 
-Revenons à notre somme de train d'impulsion. Comme le signal n'est non-nul que lorsque 
+Revenons à notre somme de train d'impulsions. Comme le signal n'est non-nul que lorsque 
 $\omega = k\frac{2\pi}{N}$ :
 \begin{equation}
 \begin{array}{ll}
-X(e^{j\omega}) &= \DS X_1(e^{j\omega})\dfrac{2\pi}{N}\sum_{k=-\infty}^\infty e^{j\omega rN}\delta\left(
+X(e^{j\omega}) &= \DS X_1(e^{j\omega})\dfrac{2\pi}{N}\sum_{k=-\infty}^\infty \delta\left(
 \omega-k\dfrac{2\pi}{N}\right)\\
 &=\DS \dfrac{2\pi}{N}\sum_{k=-\infty}^\infty X_1\left(e^{j\frac{2\pi}{N}k}\right)\delta\left(
 \omega-k\dfrac{2\pi}{N}\right)\\
@@ -378,7 +378,7 @@ X(e^{j\omega}) &= \DS X_1(e^{j\omega})\dfrac{2\pi}{N}\sum_{k=-\infty}^\infty e^{
 \end{equation}
 Il s'agit de la transformée de Fourier d'un signal périodique en fonction de son développement 
 en série de Fourier discrète sur le spectre du signal apériodique : on retrouve "seulement" les 
-coefficnets de la série de Fourier. Le signal périodique $x(n)$ possède une série de raie espacée de $2\pi/N$.\\
+coefficients de la série de Fourier. Le signal périodique $x(n)$ possède une série de raies espacées de $2\pi/N$.\\
 
 Un exemple et un résumé du chapitre sont donnés au slide T45 et T46.
 
